@@ -22,8 +22,8 @@ function populateButtons(arrayToUse, classToAdd, areaToAddTo){
 }
 
 //When you click on the animal button
-$(document).on('click', '#addAnimal', function(){
-    $('#animals').empty();
+$(document).on('click', '.animalButton', function(){
+    $('.animalButton').empty();
     $('#addAnimal').removeClass('active');
     $(this).addClass('active');
 
@@ -67,25 +67,48 @@ $(document).on('click', '#addAnimal', function(){
 });
 });
 
+$(document).on('click', '.animalImage', function(){
+    var state = $(this).attr('data-state'); 
+    
+    if ( state == 'still'){
+        $(this).attr('src', $(this).data('animate'));
+        $(this).attr('data-state', 'animate');
+    }else{
+        $(this).attr('src', $(this).data('still'));
+        $(this).attr('data-state', 'still');
+    }
+})
+
+$('#addAnimal').on('click', function(){
+    var newAnimal = $('input').eq(0).val();
+
+    if (newAnimal.length > 2){
+        animals.push(newAnimal);
+    }
+
+    populateButtons(animals, 'animalButton', '#animalButtons');
+
+    return false;
+});
 
 //adds a new animal when you click the button
-    $('#addAnimal').on('click', function() {
+ //   $('#addAnimal').on('click', function() {
 
 //api_key 	"dc6zaTOxFJmzC"
 
-        var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + "input";
+//         var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + "input";
 
-        $.ajax({url: queryURL, method: 'GET'})
+//         $.ajax({url: queryURL, method: 'GET'})
 
-            .done(function(response) {
+//             .done(function(response) {
 
             
-                var imageUrl = response.data.image_original_url;
-                var catImage = $("<img>");
+//                 var imageUrl = response.data.image_original_url;
+//                 var catImage = $("<img>");
         
-                catImage.attr('src', imageUrl);
-                catImage.attr('alt', 'cat image');
+//                 catImage.attr('src', imageUrl);
+//                 catImage.attr('alt', 'cat image');
 
-                $('#images').prepend(catImage);
-            });
-});
+//                 $('#images').prepend(catImage);
+//             });
+// });
