@@ -59,10 +59,10 @@ $(document).on('click', '.animalButton', function(){
              animalImage.attr('data-state', 'still')
              animalImage.addClass('animalImage');
 
-             animalDiv.append(p)
-             animalDiv.append(animalImage)
+             animalDiv.prepend(p)
+             animalDiv.prepend(animalImage)
 
-             $('#animals').append(animalDiv);
+             $('#animals').prepend(animalDiv);
          }
 });
 });
