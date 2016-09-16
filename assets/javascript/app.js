@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $(function() {
 	    populateButtons(animals, 'animalButton', '#animalButtons');
 
@@ -7,26 +6,67 @@ $(function() {
 
 var animals = ["dog", "cat", "rabbit", "hamster", "skunk", "goldfish", "bird", "ferret", "turtle", "sugar glider", "chinchilla", "hedgehog", "hermit crab", "gerbil", "pygmy goat", "chicken", "capybara", "teacup pig", "serval", "salamander", "frog"];
 
+
 //function to make buttons and add to page
+function populateButtons(arrayToUse, classToAdd, areaToAddTo){
+    $(areaToAddTo).empty();
 
+    for (var i = 0; i < arrayToUse.length; i++){
+        var a = $('<button>')
+        a.addClass(classToAdd);
+        a.attr('data-type', arrayToUse[i]);
+        a.text(arrayToUse[i]);
+        $(areaToAddTo).append(a);
+    }
 
+}
 
-$('.animalButton')
-=======
-$(document).ready (function() {
+//When you click on the animal button
+$(document).on('click', '#addAnimal', function(){
+    $('#animals').empty();
+    $('#addAnimal').removeClass('active');
+    $(this).addClass('active');
 
-$('#animalButton').on('click', function() {
+    var type = $(this).data('type');
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=dc6zaTOxFJmzC&limit=10";
 
-	var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cats"
-	$.ajax({url: queryURL, method: 'GET'})
+    $.ajax({url: queryURL, method: 'GET'})
+     .done(function(response) {
+         var results = response.data;
 
-            .done(function(response) {
-            var imageUrl = response.data.image_original_url;
-            var catImage = $("<img>");
-            catImage.attr('src', imageUrl);
-            catImage.attr('alt', 'cat image');
-            $('#images').prepend(catImage);
-})
+            // .done(function(response) {
+            // var imageUrl = response.data.image_original_url;
+            // var catImage = $("<img>");
+            // catImage.attr('src', imageUrl);
+            // catImage.attr('alt', 'cat image');
+            // $('#images').prepend(catImage);
+
+//Loop that switches between still and animated
+         for(var i=0; i < results.length; i++){
+             var animalDiv = $('<div class="animal-item">')
+
+             var rating = results[i].rating;
+
+             var p = $('<p>').text( "Rating: " + rating);
+
+             var animated = results[i].images.fixed_height.url;
+             var still = results[i].images.fixed_height_still.url;
+
+             var animalImage = $('<img>');
+             animalImage.attr('src', still);
+             animalImage.attr('data-still', still);
+             animalImage.attr('data-animate', animated);
+             animalImage.attr('data-state', 'still')
+             animalImage.addClass('animalImage');
+
+             animalDiv.append(p)
+             animalDiv.append(animalImage)
+
+             $('#animals').append(animalDiv);
+         }
+});
+});
+
 
 //adds a new animal when you click the button
     $('#addAnimal').on('click', function() {
@@ -49,4 +89,3 @@ $('#animalButton').on('click', function() {
                 $('#images').prepend(catImage);
             });
 });
->>>>>>> e9468edea82b8181d80431fd7b4b446a3ed482b1
