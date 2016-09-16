@@ -23,10 +23,9 @@ function populateButtons(arrayToUse, classToAdd, areaToAddTo){
 
 //When you click on the animal button
 $(document).on('click', '.animalButton', function(){
-//    $('.animalButton').empty();
     $('#addAnimal').removeClass('active');
     $(this).addClass('active');
-
+//sets the type on the giphy search
     var type = $(this).data('type');
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=dc6zaTOxFJmzC&limit=10";
 
@@ -34,19 +33,12 @@ $(document).on('click', '.animalButton', function(){
      .done(function(response) {
          var results = response.data;
 
-            // .done(function(response) {
-            // var imageUrl = response.data.image_original_url;
-            // var catImage = $("<img>");
-            // catImage.attr('src', imageUrl);
-            // catImage.attr('alt', 'cat image');
-            // $('#images').prepend(catImage);
 
 //Loop that switches between still and animated
          for(var i=0; i < results.length; i++){
              var animalDiv = $('<div class="animal-item">')
-
+//puts in the rating for the giphy
              var rating = results[i].rating;
-
              var p = $('<p>').text( "Rating: " + rating);
 
              var animated = results[i].images.fixed_height.url;
@@ -58,7 +50,7 @@ $(document).on('click', '.animalButton', function(){
              animalImage.attr('data-animate', animated);
              animalImage.attr('data-state', 'still')
              animalImage.addClass('animalImage');
-
+//Made it prepend, so the user can see the new images once button is clicked
              animalDiv.prepend(p)
              animalDiv.prepend(animalImage)
 
@@ -67,6 +59,7 @@ $(document).on('click', '.animalButton', function(){
 });
 });
 
+//switches the state, if it's still, it will animate and vice versa
 $(document).on('click', '.animalImage', function(){
     var state = $(this).attr('data-state'); 
     
@@ -79,6 +72,7 @@ $(document).on('click', '.animalImage', function(){
     }
 })
 
+//adds new animal by user
 $('#addAnimal').on('click', function(){
     var newAnimal = $('input').eq(0).val();
 
@@ -90,25 +84,3 @@ $('#addAnimal').on('click', function(){
 
     return false;
 });
-
-//adds a new animal when you click the button
- //   $('#addAnimal').on('click', function() {
-
-//api_key 	"dc6zaTOxFJmzC"
-
-//         var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + "input";
-
-//         $.ajax({url: queryURL, method: 'GET'})
-
-//             .done(function(response) {
-
-            
-//                 var imageUrl = response.data.image_original_url;
-//                 var catImage = $("<img>");
-        
-//                 catImage.attr('src', imageUrl);
-//                 catImage.attr('alt', 'cat image');
-
-//                 $('#images').prepend(catImage);
-//             });
-// });
