@@ -23,7 +23,7 @@ function populateButtons(arrayToUse, classToAdd, areaToAddTo){
 
 //When you click on the animal button
 $(document).on('click', '.animalButton', function(){
-    $('.animalButton').empty();
+//    $('.animalButton').empty();
     $('#addAnimal').removeClass('active');
     $(this).addClass('active');
 
