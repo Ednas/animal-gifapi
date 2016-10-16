@@ -2,18 +2,22 @@ body {
     font: 18px arial, sans-serif;
     background: #eee;
 }
+
+.clear {
+    padding: 30px;
+}
 #animals {
     width: 70%;
 }
 .animal-item {
     float: left;
+    display: inline-grid;
     padding: 10px;
 }
-form {
-    width: 30%;
-    float: right;
+form {    
     padding: 20px;
 }
+
 label {
     display: block;
     font-weight: 700;
@@ -43,4 +47,7 @@ input[type="submit"]:hover {
 }
 button.active {
     background: #334E4D;
+}
+img {
+    vertical-align: middle;
 }
