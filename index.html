@@ -18,28 +18,39 @@
 <div class="clear"></div>
 
 <body>
-  <div class="col-md-1"></div>
-  <div class="col-md-6">
-    <div id=animalButtons>
+  <div class="wrapper">
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+      <div id=animalButtons>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <form id="animalForm">
+        <label for="animalImage">Add an animal
+        </label>
+        <input type="text" id=animalInput></input>
+        <input id="addAnimal" type="submit" value="submit"></input>
+      </form>
+      <h2>Click on an Animal Button to display 10 giphy's of that animal</h2>
+      <p>You can add more Animals by using the Animal form</p>
+      <p>If you click on the animal, it will become animated</p>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-12">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div id=animals>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <form id="animalForm">
-      <label for="animalImage">Add an animal
-      </label>
-      <input type="text" id=animalInput></input>
-      <input id="addAnimal" type="submit" value="submit"></input>
-    </form>
-  </div>
-  <div class="col-md-1"></div>
-  <div class="col-md-12">
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
-    <div id=animals>
+  <div class="push"></div>
+  <footer class="footer">
+    <div class="container">
+      <p><a href="http://www.edna.tech">About Edna Jonsson</a> | <a href="https://github.com/Ednas/animal-gifapi">GitHub Repo</a>
+        <br> &copy; 2016 Edna Jonsson</p>
     </div>
-  </div>
-
-
+  </footer>
   </div>
   <!--jQuery-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
